@@ -1,0 +1,125 @@
+inherited frm_Tanques: Tfrm_Tanques
+  Caption = 'Cadastro de Tanques'
+  TextHeight = 15
+  inherited pnlTopo: TPanel
+    ExplicitLeft = 0
+    ExplicitWidth = 711
+    inherited lbNomeTela: TLabel
+      Width = 166
+      Caption = 'Cadastro de Tanques'
+      ExplicitWidth = 166
+    end
+  end
+  inherited pnlCentral: TPanel
+    ExplicitLeft = 0
+    ExplicitTop = 105
+    ExplicitWidth = 711
+    ExplicitHeight = 379
+    object Label1: TLabel [0]
+      Left = 40
+      Top = 56
+      Width = 39
+      Height = 15
+      Caption = 'C'#243'digo'
+      FocusControl = edCodigo
+    end
+    object Label2: TLabel [1]
+      Left = 40
+      Top = 104
+      Width = 92
+      Height = 15
+      Caption = 'Descri'#231#227'o Tanque'
+      FocusControl = edNomeTanque
+    end
+    object Label3: TLabel [2]
+      Left = 312
+      Top = 104
+      Width = 26
+      Height = 15
+      Caption = 'Valor'
+      FocusControl = edValor
+    end
+    object Label38: TLabel [3]
+      Left = 20
+      Top = 23
+      Width = 112
+      Height = 14
+      Caption = 'DADOS CADASTRAIS'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8404992
+      Font.Height = -12
+      Font.Name = 'Bahnschrift'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Shape1: TShape [4]
+      Left = 17
+      Top = 39
+      Width = 654
+      Height = 3
+      Brush.Color = 15066597
+      Pen.Style = psClear
+    end
+    object edCodigo: TDBEdit [5]
+      Left = 40
+      Top = 72
+      Width = 69
+      Height = 23
+      DataField = 'CODTANQUE'
+      DataSource = dsTabela
+      TabOrder = 1
+    end
+    object edNomeTanque: TDBEdit [6]
+      Left = 40
+      Top = 120
+      Width = 265
+      Height = 23
+      DataField = 'NOMETANQUE'
+      DataSource = dsTabela
+      TabOrder = 2
+    end
+    object edValor: TDBEdit [7]
+      Left = 312
+      Top = 120
+      Width = 80
+      Height = 23
+      DataField = 'VALOR'
+      DataSource = dsTabela
+      TabOrder = 3
+    end
+    inherited dbPesquisa: TDBGrid
+      Left = 416
+      Top = 6
+      OnDrawColumnCell = nil
+      OnDblClick = nil
+      OnTitleClick = nil
+    end
+  end
+  inherited qryTabela: TFDQuery
+    SQL.Strings = (
+      'SELECT '
+      'CODTANQUE,'
+      'NOMETANQUE,'
+      'VALOR'
+      'FROM Tanques'
+      'ORDER BY CODTANQUE')
+    object qryTabelaCODTANQUE: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'CODTANQUE'
+      Origin = 'CODTANQUE'
+      Required = True
+    end
+    object qryTabelaNOMETANQUE: TStringField
+      DisplayLabel = 'Descri'#231#227'o Tanque'
+      FieldName = 'NOMETANQUE'
+      Origin = 'NOMETANQUE'
+      Size = 50
+    end
+    object qryTabelaVALOR: TIntegerField
+      DisplayLabel = 'Valor'
+      FieldName = 'VALOR'
+      Origin = 'VALOR'
+      EditFormat = '#,###,##0.00'
+    end
+  end
+end

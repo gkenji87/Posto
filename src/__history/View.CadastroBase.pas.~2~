@@ -1,0 +1,68 @@
+unit View.CadastroBase;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB,
+  Vcl.Grids, Vcl.DBGrids, Vcl.Buttons;
+
+type
+  Tfrm_CadastroBase = class(TForm)
+    pnlTopo: TPanel;
+    lbNomeTela: TLabel;
+    btnFechar: TSpeedButton;
+    pnlCRUD: TPanel;
+    btnPesquisa: TSpeedButton;
+    btnIncluir: TSpeedButton;
+    btnAlterar: TSpeedButton;
+    btnExcluir: TSpeedButton;
+    btnConfirmar: TSpeedButton;
+    btnCancelar: TSpeedButton;
+    pnlCentral: TPanel;
+    dbPesquisa: TDBGrid;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+    procedure ControlaBotoes(Flag: Boolean);
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_CadastroBase: Tfrm_CadastroBase;
+
+implementation
+
+{$R *.dfm}
+
+procedure Tfrm_CadastroBase.ControlaBotoes(Flag: Boolean);
+begin
+  btnIncluir.Visible   := Flag;
+  btnAlterar.Visible   := Flag;
+  btnExcluir.Visible   := Flag;
+  btnConfirmar.Visible := not Flag;
+  btnCancelar.Visible  := not Flag;
+end;
+
+procedure Tfrm_CadastroBase.FormCreate(Sender: TObject);
+var
+  I: Integer;
+begin
+  //Habilita os botões I,A,E e Pesquisa
+  ControlaBotoes(True);
+  pnlPesquisa.Visible := True;
+  pnlRegistro.Visible := False;
+  //Carrega o SQL de pesquisa
+  qryTabela.Close;
+  qryTabela.SQL.Text := STRSelect;
+  qryTabela.Open();
+
+  if not qryTabela.IsEmpty then
+  begin
+    for I := 0 to dbPesquisa.Columns.Count - 1 do
+      dbPesquisa.Columns[I].Title.Font.Size := 10;
+  end;
+end;
+
+end.

@@ -1,0 +1,20 @@
+program Posto;
+
+uses
+  Vcl.Forms,
+  View.Principal in 'src\View.Principal.pas' {frm_Principal},
+  View.CadastroBase in 'src\View.CadastroBase.pas' {frm_CadastroBase},
+  View.CadastroTanques in 'src\View.CadastroTanques.pas' {frm_Tanques},
+  View.CadastroBombas in 'src\View.CadastroBombas.pas' {frm_Bombas};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfrm_Principal, frm_Principal);
+  Application.CreateForm(Tfrm_CadastroBase, frm_CadastroBase);
+  Application.CreateForm(Tfrm_Tanques, frm_Tanques);
+  Application.CreateForm(Tfrm_Bombas, frm_Bombas);
+  Application.Run;
+end.

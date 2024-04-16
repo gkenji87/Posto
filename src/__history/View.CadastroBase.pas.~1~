@@ -1,0 +1,37 @@
+unit View.CadastroBase;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Data.DB,
+  Vcl.Grids, Vcl.DBGrids, Vcl.Buttons;
+
+type
+  Tfrm_CadastroBase = class(TForm)
+    pnlTopo: TPanel;
+    lbNomeTela: TLabel;
+    btnFechar: TSpeedButton;
+    pnlCRUD: TPanel;
+    btnPesquisa: TSpeedButton;
+    btnIncluir: TSpeedButton;
+    btnAlterar: TSpeedButton;
+    btnExcluir: TSpeedButton;
+    btnConfirmar: TSpeedButton;
+    btnCancelar: TSpeedButton;
+    pnlCentral: TPanel;
+    dbPesquisa: TDBGrid;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_CadastroBase: Tfrm_CadastroBase;
+
+implementation
+
+{$R *.dfm}
+
+end.

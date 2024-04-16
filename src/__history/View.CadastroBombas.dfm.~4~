@@ -1,0 +1,160 @@
+inherited frm_Bombas: Tfrm_Bombas
+  Caption = 'frm_Bombas'
+  TextHeight = 15
+  inherited pnlTopo: TPanel
+    ExplicitLeft = 0
+    ExplicitWidth = 711
+    inherited lbNomeTela: TLabel
+      Width = 164
+      Caption = 'Cadastro de Bombas'
+      ExplicitWidth = 164
+    end
+  end
+  inherited pnlCentral: TPanel
+    ExplicitLeft = 0
+    ExplicitTop = 105
+    ExplicitWidth = 711
+    ExplicitHeight = 379
+    object Label1: TLabel [0]
+      Left = 96
+      Top = 88
+      Width = 39
+      Height = 15
+      Caption = 'C'#243'digo'
+      FocusControl = DBEdit1
+    end
+    object Label2: TLabel [1]
+      Left = 96
+      Top = 136
+      Width = 92
+      Height = 15
+      Caption = 'Descri'#231#227'o Bomba'
+      FocusControl = DBEdit2
+    end
+    object Label3: TLabel [2]
+      Left = 96
+      Top = 184
+      Width = 69
+      Height = 15
+      Caption = 'CODTANQUE'
+      FocusControl = DBEdit3
+    end
+    object Label4: TLabel [3]
+      Left = 96
+      Top = 232
+      Width = 80
+      Height = 15
+      Caption = 'NOMETANQUE'
+      FocusControl = DBEdit4
+    end
+    inherited dbPesquisa: TDBGrid
+      Left = 520
+      Top = 6
+      OnDrawColumnCell = nil
+      OnDblClick = nil
+      OnTitleClick = nil
+    end
+    object DBEdit1: TDBEdit
+      Left = 96
+      Top = 104
+      Width = 77
+      Height = 23
+      DataField = 'CODBOMBA'
+      DataSource = dsTabela
+      TabOrder = 1
+    end
+    object DBEdit2: TDBEdit
+      Left = 96
+      Top = 152
+      Width = 300
+      Height = 23
+      DataField = 'NOMEBOMBA'
+      DataSource = dsTabela
+      TabOrder = 2
+    end
+    object DBEdit3: TDBEdit
+      Left = 96
+      Top = 200
+      Width = 154
+      Height = 23
+      DataField = 'CODTANQUE'
+      DataSource = dsTabela
+      TabOrder = 3
+    end
+    object DBEdit4: TDBEdit
+      Left = 96
+      Top = 248
+      Width = 300
+      Height = 23
+      DataField = 'NOMETANQUE'
+      DataSource = dsTabela
+      TabOrder = 4
+    end
+    object DBLookupComboBox1: TDBLookupComboBox
+      Left = 96
+      Top = 312
+      Width = 300
+      Height = 23
+      DataField = 'CODTANQUE'
+      DataSource = dsTabela
+      KeyField = 'CODTANQUE'
+      ListField = 'NOMETANQUE'
+      ListSource = dsTanque
+      TabOrder = 5
+    end
+  end
+  inherited qryTabela: TFDQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT b.CODBOMBA, b.NOMEBOMBA, b.CODTANQUE, t.NOMETANQUE'
+      'FROM BOMBAS b'
+      'LEFT JOIN TANQUES t ON b.CODTANQUE = t.CODTANQUE'
+      'ORDER BY b.CODBOMBA ')
+    object qryTabelaCODBOMBA: TIntegerField
+      FieldName = 'CODBOMBA'
+      Origin = 'CODBOMBA'
+      Required = True
+    end
+    object qryTabelaNOMEBOMBA: TStringField
+      FieldName = 'NOMEBOMBA'
+      Origin = 'NOMEBOMBA'
+      Size = 30
+    end
+    object qryTabelaCODTANQUE: TIntegerField
+      FieldName = 'CODTANQUE'
+      Origin = 'CODTANQUE'
+    end
+    object qryTabelaNOMETANQUE: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOMETANQUE'
+      Origin = 'NOMETANQUE'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 50
+    end
+  end
+  object qryTanque: TFDQuery
+    Connection = DMConexao.FDConexao
+    SQL.Strings = (
+      'SELECT CODTANQUE, NOMETANQUE'
+      'FROM TANQUES'
+      'ORDER BY CODTANQUE')
+    Left = 651
+    Top = 384
+    object qryTanqueCODTANQUE: TIntegerField
+      FieldName = 'CODTANQUE'
+      Origin = 'CODTANQUE'
+      Required = True
+    end
+    object qryTanqueNOMETANQUE: TStringField
+      FieldName = 'NOMETANQUE'
+      Origin = 'NOMETANQUE'
+      Size = 50
+    end
+  end
+  object dsTanque: TDataSource
+    DataSet = qryTanque
+    Left = 651
+    Top = 336
+  end
+end

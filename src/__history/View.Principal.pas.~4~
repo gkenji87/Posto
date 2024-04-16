@@ -1,0 +1,85 @@
+unit View.Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.ComCtrls;
+
+type
+  Tfrm_Principal = class(TForm)
+    pnlTopo: TPanel;
+    pnlMenu: TPanel;
+    btnMinimizar: TSpeedButton;
+    btnMaximizar: TSpeedButton;
+    lbPostoCombustivelABC: TLabel;
+    btnSairSistema: TSpeedButton;
+    pnlPrincipal: TPanel;
+    btnCadBombas: TSpeedButton;
+    btnCadTanques: TSpeedButton;
+    btnLancamentoVenda: TSpeedButton;
+    pcPrincipal: TPageControl;
+    tabDemonstracao: TTabSheet;
+    memExplicacaoDemonstrativo: TMemo;
+    procedure btnSairSistemaClick(Sender: TObject);
+    procedure btnCadTanquesClick(Sender: TObject);
+    procedure btnCadBombasClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_Principal: Tfrm_Principal;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  View.CadastroTanques, View.CadastroBombas;
+
+procedure Tfrm_Principal.btnCadBombasClick(Sender: TObject);
+var
+  Tab: TTabSheet;
+  Form: TForm;
+begin
+  Tab := TTabSheet.Create(pcPrincipal);
+  Tab.PageControl := pcPrincipal;
+  Tab.Name := 'Cadastro Bombas';
+  Tab.Visible := true;
+
+  Application.CreateForm(Tfrm_Tanques, Form);
+  Form.Parent := tab;
+  Form.Align := alClient;
+  Form.BorderStyle := bsNone;
+  Form.Visible := true;
+  pcPrincipal.ActivePage := Tab;
+end;
+
+procedure Tfrm_Principal.btnCadTanquesClick(Sender: TObject);
+var
+  Tab: TTabSheet;
+  Form: TForm;
+begin
+  Tab := TTabSheet.Create(pcPrincipal);
+  Tab.PageControl := pcPrincipal;
+  Tab.Name := 'Cadastro Tanques';
+  Tab.Visible := true;
+
+  Application.CreateForm(Tfrm_Tanques, Form);
+  Form.Parent := tab;
+  Form.Align := alClient;
+  Form.BorderStyle := bsNone;
+  Form.Visible := true;
+  pcPrincipal.ActivePage := Tab;
+end;
+
+procedure Tfrm_Principal.btnSairSistemaClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+end.
