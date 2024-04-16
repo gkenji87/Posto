@@ -24,7 +24,7 @@ type
     qryLancamentoVALORUNITARIO: TCurrencyField;
     qryLancamentoPORCENTAGEMIMPOSTO: TCurrencyField;
     qryLancamentoVALORTOTAL: TCurrencyField;
-    lbSelecioneBico: TLabel;
+    Label1: TLabel;
     cbBomba: TDBLookupComboBox;
     qryTanque: TFDQuery;
     dsTanque: TDataSource;
@@ -33,31 +33,12 @@ type
     qryTanqueVALOR: TCurrencyField;
     edValor: TDBEdit;
     dsLancamento: TDataSource;
-    lbValor: TLabel;
-    edData: TDBEdit;
-    lbData: TLabel;
-    lbQuantidade: TLabel;
-    edValorTotal: TDBEdit;
-    lbValorTotal: TLabel;
-    edQtde: TDBEdit;
-    Panel1: TPanel;
-    Label1: TLabel;
-    Label2: TLabel;
     procedure btnFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure cbBombaClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-  end;
-
-  TValorBicoBomba = class
-    Bomba: Integer;
-    DescricaoBomba: String;
-    Valor: Currency;
-
-//    function RecuperaValorBico():;
   end;
 
 var
@@ -74,22 +55,10 @@ begin
   frm_Principal.pcPrincipal.ActivePage.Destroy;
 end;
 
-procedure Tfrm_LancamentoVendas.cbBombaClick(Sender: TObject);
-var
-  BombaBico: TValorBicoBomba;
-begin
-  BombaBico := TValorBicoBomba.Create;
-//  BombaBico.Bomba :=
-end;
-
 procedure Tfrm_LancamentoVendas.FormCreate(Sender: TObject);
 begin
-  qryTanque.Close;
-  qryTanque.Open;
-
   qryLancamento.Close;
   qryLancamento.Open;
-  qryLancamento.Append;
 end;
 
 end.

@@ -11,8 +11,6 @@ type
   Tfrm_Principal = class(TForm)
     pnlTopo: TPanel;
     pnlMenu: TPanel;
-    btnMinimizar: TSpeedButton;
-    btnMaximizar: TSpeedButton;
     lbPostoCombustivelABC: TLabel;
     btnSairSistema: TSpeedButton;
     pnlPrincipal: TPanel;
@@ -22,9 +20,13 @@ type
     pcPrincipal: TPageControl;
     tabDemonstracao: TTabSheet;
     memExplicacaoDemonstrativo: TMemo;
+    btnRelatorio: TSpeedButton;
     procedure btnSairSistemaClick(Sender: TObject);
     procedure btnCadTanquesClick(Sender: TObject);
     procedure btnCadBombasClick(Sender: TObject);
+    procedure btnLancamentoVendaClick(Sender: TObject);
+    procedure pnlTopoMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
     procedure VerificaExisteTabSheet(Nome: String);
@@ -40,7 +42,7 @@ implementation
 {$R *.dfm}
 
 uses
-  View.CadastroTanques, View.CadastroBombas;
+  View.CadastroTanques, View.CadastroBombas, View.LancamentoVendas;
 
 procedure Tfrm_Principal.VerificaExisteTabSheet(Nome: String);
 var
@@ -96,9 +98,39 @@ begin
   pcPrincipal.ActivePage := Tab;
 end;
 
+procedure Tfrm_Principal.btnLancamentoVendaClick(Sender: TObject);
+var
+  Tab: TTabSheet;
+  Form: TForm;
+begin
+  VerificaExisteTabSheet('Vendas');
+
+  Tab := TTabSheet.Create(pcPrincipal);
+  Tab.PageControl := pcPrincipal;
+  Tab.Name := 'Vendas';
+  Tab.Visible := true;
+
+  Application.CreateForm(Tfrm_LancamentoVendas, Form);
+  Form.Parent := tab;
+  Form.Align := alClient;
+  Form.BorderStyle := bsNone;
+  Form.Visible := true;
+  pcPrincipal.ActivePage := Tab;
+end;
+
 procedure Tfrm_Principal.btnSairSistemaClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure Tfrm_Principal.pnlTopoMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+
+const
+  sc_DragMove = $f012;
+begin
+  ReleaseCapture;
+  Perform(wm_SysCommand, sc_DragMove, 0);
 end;
 
 end.

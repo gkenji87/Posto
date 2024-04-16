@@ -458,6 +458,10 @@ object frm_Principal: Tfrm_Principal
     BevelOuter = bvNone
     ParentBackground = False
     TabOrder = 2
+    ExplicitLeft = 464
+    ExplicitTop = 256
+    ExplicitWidth = 185
+    ExplicitHeight = 41
     object pcPrincipal: TPageControl
       Left = 0
       Top = 0

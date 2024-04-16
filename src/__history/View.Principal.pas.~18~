@@ -11,8 +11,6 @@ type
   Tfrm_Principal = class(TForm)
     pnlTopo: TPanel;
     pnlMenu: TPanel;
-    btnMinimizar: TSpeedButton;
-    btnMaximizar: TSpeedButton;
     lbPostoCombustivelABC: TLabel;
     btnSairSistema: TSpeedButton;
     pnlPrincipal: TPanel;
@@ -22,11 +20,16 @@ type
     pcPrincipal: TPageControl;
     tabDemonstracao: TTabSheet;
     memExplicacaoDemonstrativo: TMemo;
+    btnRelatorio: TSpeedButton;
     procedure btnSairSistemaClick(Sender: TObject);
     procedure btnCadTanquesClick(Sender: TObject);
     procedure btnCadBombasClick(Sender: TObject);
+    procedure btnLancamentoVendaClick(Sender: TObject);
+    procedure pnlTopoMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
+    procedure AbrirForm(aForm: TComponentClass; Nome:String);
   public
     { Public declarations }
   end;
@@ -39,19 +42,29 @@ implementation
 {$R *.dfm}
 
 uses
-  View.CadastroTanques, View.CadastroBombas;
+  View.CadastroTanques, View.CadastroBombas, View.LancamentoVendas;
 
-procedure Tfrm_Principal.btnCadBombasClick(Sender: TObject);
+procedure TfrmPrincipal.AbrirForm(aForm: TComponentClass; Nome:String);
 var
+  I:Integer;
   Tab: TTabSheet;
   Form: TForm;
 begin
+  for I := pcPrincipal.PageCount -1 downto 0 do
+  begin
+    if pcPrincipal.Pages[I].Name = Nome then
+    begin
+      pcPrincipal.ActivePageIndex := pcPrincipal.Pages[I].TabIndex;
+      exit;
+    end;
+  end;
+
   Tab := TTabSheet.Create(pcPrincipal);
   Tab.PageControl := pcPrincipal;
-  Tab.Name := 'Cadastro Bombas';
+  Tab.Name := Nome;
   Tab.Visible := true;
 
-  Application.CreateForm(Tfrm_Bombas, Form);
+  Application.CreateForm(aForm, Form);
   Form.Parent := tab;
   Form.Align := alClient;
   Form.BorderStyle := bsNone;
@@ -59,27 +72,34 @@ begin
   pcPrincipal.ActivePage := Tab;
 end;
 
-procedure Tfrm_Principal.btnCadTanquesClick(Sender: TObject);
-var
-  Tab: TTabSheet;
-  Form: TForm;
+procedure Tfrm_Principal.btnCadBombasClick(Sender: TObject);
 begin
-  Tab := TTabSheet.Create(pcPrincipal);
-  Tab.PageControl := pcPrincipal;
-  Tab.Name := 'Cadastro Tanques';
-  Tab.Visible := true;
+  AbrirForm(Tfrm_Bombas, 'Bombas');
+end;
 
-  Application.CreateForm(Tfrm_Tanques, Form);
-  Form.Parent := tab;
-  Form.Align := alClient;
-  Form.BorderStyle := bsNone;
-  Form.Visible := true;
-  pcPrincipal.ActivePage := Tab;
+procedure Tfrm_Principal.btnCadTanquesClick(Sender: TObject);
+begin
+  AbrirForm(Tfrm_Tanques, 'Tanques');
+end;
+
+procedure Tfrm_Principal.btnLancamentoVendaClick(Sender: TObject);
+begin
+  AbrirForm(Tfrm_LancamentoVendas, 'Vendas');
 end;
 
 procedure Tfrm_Principal.btnSairSistemaClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure Tfrm_Principal.pnlTopoMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+
+const
+  sc_DragMove = $f012;
+begin
+  ReleaseCapture;
+  Perform(wm_SysCommand, sc_DragMove, 0);
 end;
 
 end.
