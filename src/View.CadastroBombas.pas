@@ -30,6 +30,7 @@ type
     qryTabelaNOMETANQUE: TStringField;
     Label3: TLabel;
     procedure FormCreate(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,6 +43,16 @@ var
 implementation
 
 {$R *.dfm}
+
+uses
+  DM.Conexao;
+
+procedure Tfrm_Bombas.btnIncluirClick(Sender: TObject);
+begin
+  inherited;
+  qryTabelaCODBOMBA.AsInteger := DMConexao.PegaUltimoCodigo('Bombas', 'CodBomba');
+  edDescBomba.SetFocus;
+end;
 
 procedure Tfrm_Bombas.FormCreate(Sender: TObject);
 begin

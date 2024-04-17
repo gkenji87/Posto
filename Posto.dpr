@@ -7,7 +7,8 @@ uses
   View.CadastroTanques in 'src\View.CadastroTanques.pas' {frm_Tanques},
   View.CadastroBombas in 'src\View.CadastroBombas.pas' {frm_Bombas},
   DM.Conexao in 'src\DM.Conexao.pas' {DMConexao: TDataModule},
-  View.LancamentoVendas in 'src\View.LancamentoVendas.pas' {frm_LancamentoVendas};
+  View.LancamentoVendas in 'src\View.LancamentoVendas.pas' {frm_LancamentoVendas},
+  Relatorio.RelatorioAbastecimento in 'src\Relatorio.RelatorioAbastecimento.pas' {rel_RelatorioAbastecimento};
 
 {$R *.res}
 
@@ -16,6 +17,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_Principal, frm_Principal);
   Application.CreateForm(TDMConexao, DMConexao);
-  Application.CreateForm(Tfrm_LancamentoVendas, frm_LancamentoVendas);
   Application.Run;
 end.

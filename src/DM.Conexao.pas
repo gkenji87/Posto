@@ -17,6 +17,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    function PegaUltimoCodigo(Tabela, Codigo: String): Integer;
   end;
 
 var
@@ -40,6 +41,20 @@ begin
   FDConexao.Params.DriverID := 'FB';
   FDConexao.Params.UserName := 'SYSDBA';
   FDConexao.Params.Password := 'masterkey';
+end;
+
+function TDMConexao.PegaUltimoCodigo(Tabela, Codigo: String): Integer;
+begin
+  try
+    Result := FDConexao.ExecSQLScalar('SELECT COALESCE(MAX('+Codigo+'),0) FROM '+Tabela ) + 1;
+    if Result = 0 then
+      Result := 1;
+  except
+    on e: Exception do
+    begin
+      raise Exception.Create('Erro na recuperação do Código');
+    end;
+  end;
 end;
 
 end.

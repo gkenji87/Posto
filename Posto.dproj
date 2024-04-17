@@ -126,6 +126,10 @@
             <Form>frm_LancamentoVendas</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\Relatorio.RelatorioAbastecimento.pas">
+            <Form>rel_RelatorioAbastecimento</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

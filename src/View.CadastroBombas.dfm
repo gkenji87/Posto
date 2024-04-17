@@ -2,8 +2,6 @@ inherited frm_Bombas: Tfrm_Bombas
   Caption = 'frm_Bombas'
   TextHeight = 17
   inherited pnlTopo: TPanel
-    ExplicitLeft = 0
-    ExplicitWidth = 711
     inherited lbNomeTela: TLabel
       Width = 164
       Caption = 'Cadastro de Bombas'
@@ -11,10 +9,6 @@ inherited frm_Bombas: Tfrm_Bombas
     end
   end
   inherited pnlCentral: TPanel
-    ExplicitLeft = 0
-    ExplicitTop = 105
-    ExplicitWidth = 711
-    ExplicitHeight = 379
     object Label1: TLabel [0]
       Left = 48
       Top = 64
@@ -67,6 +61,7 @@ inherited frm_Bombas: Tfrm_Bombas
       Height = 25
       DataField = 'CODBOMBA'
       DataSource = dsTabela
+      ReadOnly = True
       TabOrder = 1
     end
     object edDescBomba: TDBEdit [6]
@@ -93,9 +88,6 @@ inherited frm_Bombas: Tfrm_Bombas
     inherited dbPesquisa: TDBGrid
       Left = 462
       Top = 6
-      OnDrawColumnCell = nil
-      OnDblClick = nil
-      OnTitleClick = nil
     end
   end
   inherited qryTabela: TFDQuery

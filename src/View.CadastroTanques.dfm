@@ -2,8 +2,6 @@ inherited frm_Tanques: Tfrm_Tanques
   Caption = 'Cadastro de Tanques'
   TextHeight = 17
   inherited pnlTopo: TPanel
-    ExplicitLeft = 0
-    ExplicitWidth = 711
     inherited lbNomeTela: TLabel
       Width = 166
       Caption = 'Cadastro de Tanques'
@@ -11,10 +9,6 @@ inherited frm_Tanques: Tfrm_Tanques
     end
   end
   inherited pnlCentral: TPanel
-    ExplicitLeft = 0
-    ExplicitTop = 105
-    ExplicitWidth = 711
-    ExplicitHeight = 379
     object Label1: TLabel [0]
       Left = 40
       Top = 56
@@ -67,6 +61,7 @@ inherited frm_Tanques: Tfrm_Tanques
       Height = 25
       DataField = 'CODTANQUE'
       DataSource = dsTabela
+      ReadOnly = True
       TabOrder = 1
     end
     object edNomeTanque: TDBEdit [6]
@@ -90,9 +85,6 @@ inherited frm_Tanques: Tfrm_Tanques
     inherited dbPesquisa: TDBGrid
       Left = 384
       Top = 6
-      OnDrawColumnCell = nil
-      OnDblClick = nil
-      OnTitleClick = nil
     end
   end
   inherited qryTabela: TFDQuery

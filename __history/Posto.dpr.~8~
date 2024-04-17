@@ -1,0 +1,20 @@
+program Posto;
+
+uses
+  Vcl.Forms,
+  View.Principal in 'src\View.Principal.pas' {frm_Principal},
+  View.CadastroBase in 'src\View.CadastroBase.pas' {frm_CadastroBase},
+  View.CadastroTanques in 'src\View.CadastroTanques.pas' {frm_Tanques},
+  View.CadastroBombas in 'src\View.CadastroBombas.pas' {frm_Bombas},
+  DM.Conexao in 'src\DM.Conexao.pas' {DMConexao: TDataModule},
+  View.LancamentoVendas in 'src\View.LancamentoVendas.pas' {frm_LancamentoVendas};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfrm_Principal, frm_Principal);
+  Application.CreateForm(TDMConexao, DMConexao);
+  Application.Run;
+end.

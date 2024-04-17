@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.ComCtrls;
+  Vcl.ComCtrls, Vcl.Imaging.pngimage;
 
 type
   Tfrm_Principal = class(TForm)
@@ -19,14 +19,18 @@ type
     btnLancamentoVenda: TSpeedButton;
     pcPrincipal: TPageControl;
     tabDemonstracao: TTabSheet;
-    memExplicacaoDemonstrativo: TMemo;
     btnRelatorio: TSpeedButton;
+    ScrollBox1: TScrollBox;
+    memExplicacaoDemonstrativo: TMemo;
+    Image1: TImage;
+    Image2: TImage;
     procedure btnSairSistemaClick(Sender: TObject);
     procedure btnCadTanquesClick(Sender: TObject);
     procedure btnCadBombasClick(Sender: TObject);
     procedure btnLancamentoVendaClick(Sender: TObject);
     procedure pnlTopoMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure btnRelatorioClick(Sender: TObject);
   private
     { Private declarations }
     procedure AbrirForm(aForm: TComponentClass; Nome:String);
@@ -42,7 +46,7 @@ implementation
 {$R *.dfm}
 
 uses
-  View.CadastroTanques, View.CadastroBombas, View.LancamentoVendas;
+  View.CadastroTanques, View.CadastroBombas, View.LancamentoVendas, Relatorio.RelatorioAbastecimento;
 
 procedure Tfrm_Principal.AbrirForm(aForm: TComponentClass; Nome:String);
 var
@@ -85,6 +89,17 @@ end;
 procedure Tfrm_Principal.btnLancamentoVendaClick(Sender: TObject);
 begin
   AbrirForm(Tfrm_LancamentoVendas, 'Vendas');
+end;
+
+procedure Tfrm_Principal.btnRelatorioClick(Sender: TObject);
+begin
+  rel_RelatorioAbastecimento := Trel_RelatorioAbastecimento.Create(Self);
+  try
+//    rel_RelatorioAbastecimento.ShowModal;
+    rel_RelatorioAbastecimento.RLReport1.Preview();
+  finally
+    FreeAndNil(rel_RelatorioAbastecimento);
+  end;
 end;
 
 procedure Tfrm_Principal.btnSairSistemaClick(Sender: TObject);

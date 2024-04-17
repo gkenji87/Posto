@@ -25,6 +25,7 @@ type
     Label5: TLabel;
     edValor: TDBEdit;
     procedure FormCreate(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,6 +38,16 @@ var
 implementation
 
 {$R *.dfm}
+
+uses
+  DM.Conexao;
+
+procedure Tfrm_Tanques.btnIncluirClick(Sender: TObject);
+begin
+  inherited;
+  qryTabelaCODTANQUE.AsInteger := DMConexao.PegaUltimoCodigo('Tanques', 'CodTanque');
+  edNomeTanque.SetFocus;
+end;
 
 procedure Tfrm_Tanques.FormCreate(Sender: TObject);
 begin
