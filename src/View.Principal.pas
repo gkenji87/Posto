@@ -22,7 +22,6 @@ type
     btnRelatorio: TSpeedButton;
     ScrollBox1: TScrollBox;
     memExplicacaoDemonstrativo: TMemo;
-    Image1: TImage;
     Image2: TImage;
     procedure btnSairSistemaClick(Sender: TObject);
     procedure btnCadTanquesClick(Sender: TObject);
