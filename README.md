@@ -1,4 +1,8 @@
 Banco de dados: Firebird 3.0
+Nome Banco: Posto.FDB
+Usuario: SYSDBA
+Senha: masterkey
+
 Delphi versão 11.3
 
 Estrutuda do Banco de dados:
