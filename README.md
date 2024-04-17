@@ -4,6 +4,7 @@ Banco de dados: Firebird 3.0
  - Senha: masterkey
 
 Delphi versão 11.3
+- Arquivo executável, está dentro da pasta: WIN32
 
 Estrutuda do Banco de dados:
 ![image](https://github.com/gkenji87/Posto/assets/73451382/eae714be-26d8-4ce1-b48b-1297ef891ba5)
